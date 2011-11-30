@@ -1,8 +1,8 @@
 FubuMVC.RippleDemo
 ==
-The Fubu projects use a utility called 'Ripple' to manage not only their own build dependencies but also to allow you to manage your project dependencies with the Fubu repository, thus allowing you to update your own projects with a local build of a Fubu project.
+The Fubu projects use a utility called 'Ripple' to manage not only their own build dependencies but also to allow you to manage your project dependencies with the Fubu repository, thus allowing you to update your own projects with a local build of FubuMVC.
 
-This is an demo of using Ripple to do just that, manage Fubu dependencies in your own solution.
+This is an demo of using Ripple to do just that, manage FubuMVC dependencies in your own solution.
 
 Some (current) constraints to bear in mind;
 
