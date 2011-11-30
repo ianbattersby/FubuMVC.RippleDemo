@@ -24,7 +24,7 @@ BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile_and_tests]
+task :default => [:compile]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -68,7 +68,7 @@ def waitfor(&block)
 end
 
 desc "Compile demo"
-task :compile_and_tests => [:restore_if_missing, :clean, :version] do  
+task :compile => [:restore_if_missing, :clean, :version] do  
 	solution_dir = "src"
 
 	FileList.new("#{solution_dir}/*.sln").each do |solution_file|
