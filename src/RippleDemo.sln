@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RippleDemo.Web", "RippleDemo.Web\RippleDemo.Web.csproj", "{502545C1-2722-4839-AC88-E8F2A300BA95}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D178735A-491C-47D7-B023-436840FC74FF}"
+	ProjectSection(SolutionItems) = preProject
+		..\rakefile.rb = ..\rakefile.rb
+		..\ripple.config = ..\ripple.config
+		..\VERSION.txt = ..\VERSION.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
