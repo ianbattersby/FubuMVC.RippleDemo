@@ -8,5 +8,5 @@ Some (current) constraints to bear in mind;
 
 * FubuMVC and your <project dir> must share a common parent, e.g. c:\mycode\fubumvc and c:\mycode\myproject
 * You will need to install the buildsupport submodule or the contents thereof, this is where ripple lives
-* Any package dependencies should be details in ripple.config
-* It is advisable that you put ripple.cmd in your root project directory for ease (see fubumvc repo directory)
+* Any package dependencies should be detailed in ripple.config
+* It is advisable that you put ripple.cmd in your root project directory for ease
