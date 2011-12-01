@@ -4,6 +4,7 @@ CLR_TOOLS_VERSION = "v4.0.30319"
 buildsupportfiles = Dir["#{File.dirname(__FILE__)}/buildsupport/*.rb"]
 raise "Run `git submodule update --init` to populate your buildsupport folder." unless buildsupportfiles.any?
 buildsupportfiles.each { |ext| load ext }
+solution_dir = "src"
 
 include FileTest
 require 'albacore'
@@ -24,7 +25,7 @@ BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile]
+task :default => [:compile, :unit_test]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -69,18 +70,22 @@ end
 
 desc "Compile demo"
 task :compile => [:restore_if_missing, :clean, :version] do  
-	solution_dir = "src"
-
 	FileList.new("#{solution_dir}/*.sln").each do |solution_file|
 		MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => solution_file, :clrversion => CLR_TOOLS_VERSION
 	end
+end
 
+desc "Runs unit tests"
+task :test => [:unit_test]
+
+desc "Run tests"
+task :unit_test => :compile do
 	tests = FileList.new("#{solution_dir}/*.Tests", "#{solution_dir}/*.Tests.*").collect! { |element| 
 		"#{element}/hack/".pathmap("%-1d")
 	}
 
-    if tests.any?
-    	runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => solution_dir, :platform => 'x86'
-	    runner.executeTests tests
-    end
+	if tests.any?
+		runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => solution_dir, :platform => 'x86'
+		runner.executeTests tests
+	end
 end
